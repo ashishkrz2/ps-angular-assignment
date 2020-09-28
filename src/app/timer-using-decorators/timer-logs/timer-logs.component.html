@@ -1,0 +1,9 @@
+<div *ngIf="_timeLogs?.length;else empty_content" class="time-logs-list">
+  <p class="log" *ngFor="let log of _timeLogs">{{log}}</p>
+</div>
+
+<ng-template #empty_content>
+  <div class="no-logs">
+    <p class="log-empty-msg">⏱ Count logs will appear here</p>
+  </div>
+</ng-template>

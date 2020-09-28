@@ -1,0 +1,19 @@
+<div class="set-timer">
+  <div>
+    <span class="set-timer-label">Enter Timer Limit</span><input class="set-timer-input" #count type="text" required />
+  </div>
+  <div class="buttons">
+    <app-button (click)="setCount(count.value); count.value=null;">Start/Pause</app-button>
+    <app-button [type]="'warning'" class="reset-btn" (click)="clearCount()">Reset</app-button>
+  </div>
+</div>
+<hr class="divider" />
+<div *ngIf="pauseLogs?.length;else empty_content" class="logs-list">
+  <p class="log" *ngFor="let log of pauseLogs">{{log}}</p>
+</div>
+
+<ng-template #empty_content>
+  <div class="no-logs">
+    <p class="log-empty-msg">⏳ Countdown status will appear here</p>
+  </div>
+</ng-template>

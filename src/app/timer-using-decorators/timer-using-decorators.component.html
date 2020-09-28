@@ -1,0 +1,18 @@
+<div class="timer-container">
+  <div>
+    <app-count-down-timer
+      [count]="count"
+      [isPaused]="isPaused"
+      (setCountStatus)="setCountStatus($event)"
+    ></app-count-down-timer></div>
+  <div>
+    <app-set-timer
+      [countDownValue]="countDownValue"
+      (updateCountStatus)="updateCountStatus($event)"
+      (setTimeLogs)="setTimeLogs($event)"
+      (resetCount)="resetCount()"
+    ></app-set-timer>
+  </div>
+  <div><app-timer-logs [timeLogs]="timeLogs"></app-timer-logs></div>
+  <div><app-timer-clicks [timeLogs]="timeLogs"></app-timer-clicks></div>
+</div>

@@ -1,0 +1,31 @@
+table {
+  border-collapse: collapse;
+  width: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+
+  th {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  td,
+  th {
+    border: 1px dashed #8e949c;
+    text-align: left;
+    padding: 16px;
+    text-transform: capitalize;
+    color: #8e949c;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+}

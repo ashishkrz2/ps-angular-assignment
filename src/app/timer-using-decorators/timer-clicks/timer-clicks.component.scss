@@ -1,0 +1,28 @@
+.timer-clicks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+
+  .clicks {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    border: 3px solid #82cf8f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: #8e949c;
+  }
+
+  p.text {
+    text-align: center;
+    color: #82cf8f;
+    font-size: 1.4rem;
+    font-weight: 300;
+    margin-bottom: 0;
+  }
+}

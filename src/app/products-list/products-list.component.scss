@@ -1,0 +1,53 @@
+.actions {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  .display {
+    background-color: #FDC18D;
+    display: flex;
+    flex-direction: row;
+    width: min-content;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin-right: 1rem;
+
+    .divider {
+      border-left: 3px solid #222222;
+      height: inherit;
+      margin: 0 0.4rem;
+    }
+
+    i {
+      cursor: pointer;
+
+      &.active {
+        color: #ffffff;
+      }
+    }
+  }
+
+  .filter {
+    select {
+      border: 1px solid #FDC18D;
+      border-radius: 5px;
+      color: #FDC18D;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 0.8rem 1rem;
+      width: 240px;
+    }
+  }
+}
+
+.products {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 300px));
+
+  &.two-column {
+    grid-template-columns: repeat(2, minmax(250px, 300px));
+  }
+}

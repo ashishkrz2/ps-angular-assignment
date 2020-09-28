@@ -1,0 +1,31 @@
+.btn {
+  border-radius: 32px;
+  min-width: 36px;
+  min-height: 32px;
+  line-height: 32px;
+  font-size: 14px;
+  background: #82cf8f;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0 24px;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  text-decoration: none !important;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s all;
+
+  &.warning {
+    background: #FDC18D;
+  }
+
+  &:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+  }
+}

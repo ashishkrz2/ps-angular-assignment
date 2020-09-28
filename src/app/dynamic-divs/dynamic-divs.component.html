@@ -1,0 +1,3 @@
+<div class="boxes" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="40" (scrolled)="onScroll()">
+  <app-box *ngFor="let box of boxes" [box]="box"></app-box>
+</div>

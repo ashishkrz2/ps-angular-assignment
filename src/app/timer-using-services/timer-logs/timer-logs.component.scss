@@ -1,0 +1,21 @@
+.time-logs-list {
+  height: 100%;
+  overflow-y: auto;
+
+  .log {
+    color: #8e949c;
+  }
+}
+
+.no-logs {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .log-empty-msg {
+    color: #8e949c;
+    font-size: 14px;
+    opacity: 0.6;
+  }
+}

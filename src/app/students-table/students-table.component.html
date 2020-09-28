@@ -1,0 +1,13 @@
+<table>
+  <tr>
+    <th (click)="sortData($event)" *ngFor="let item of Object.keys(students[0])">{{item}}</th>
+  </tr>
+  <tr *ngFor="let student of students | sort:field:order">
+    <td>{{student.name}}</td>
+    <td>{{student.batch}}</td>
+    <td>{{student.section}}</td>
+    <td>{{student.math}}</td>
+    <td>{{student.science}}</td>
+    <td>{{student.commerce}}</td>
+  </tr>
+</table>

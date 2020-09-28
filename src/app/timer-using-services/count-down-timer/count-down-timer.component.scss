@@ -1,0 +1,21 @@
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  .title {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #8e949c;
+    font-weight: 400;
+  }
+
+  .count {
+    margin: 0;
+    font-size: 60px;
+    color: #82cf8f;
+    font-weight: 600;
+  }
+}

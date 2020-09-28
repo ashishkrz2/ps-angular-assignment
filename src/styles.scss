@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #F9F9F9;
+}
+
+// custom scrollbar
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #82cf8f;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #8e949c;
+}

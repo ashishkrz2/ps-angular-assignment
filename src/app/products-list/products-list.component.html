@@ -1,0 +1,19 @@
+<div class="actions">
+  <div class="display">
+    <i class="fa fa-th-large fa-2x" [ngClass]="{'active': !isListView}" aria-hidden="true" (click)="isListView = false"></i>
+    <div class="divider"></div>
+    <i class="fa fa-bars fa-2x" [ngClass]="{'active': isListView}" aria-hidden="true" (click)="isListView = true"></i>
+  </div>
+  <div class="filter">
+    <select name="cars" id="cars" value="null" (change)="setFilter($event.target.value)">
+      <option value="null">Select Price</option>
+      <option value="100.200">$100.00 ~ $200.00</option>
+      <option value="201.300">$201.00 ~ $300.00</option>
+      <option value="301.400">$301.00 ~ $400.00</option>
+      <option value="401.500">$401.00 ~ $500.00</option>
+    </select>
+  </div>
+</div>
+<div class="products" [ngClass]="{'two-column': isListView}">
+  <app-product *ngFor="let product of products | filter:field:filter:isMinMax" [product]="product"></app-product>
+</div>
