@@ -11,7 +11,7 @@ export class TimerService {
   private timerCountSource = new BehaviorSubject<number>(0); // intermediate count status
   private countDownSource = new BehaviorSubject<number>(0); // set timer
   private pauseLogsSource = new BehaviorSubject<string[]>([]); // pause value log
-  private timeLogsSource = new BehaviorSubject<TimeLog[]>([]); // time logs for start and pause 
+  private timeLogsSource = new BehaviorSubject<TimeLog[]>([]); // time logs for start and pause
   private isPausedSource = new BehaviorSubject<boolean>(false); // maintain intermediate timer status
   private isResetSource = new BehaviorSubject<boolean>(true); // reset timer
 
@@ -24,27 +24,27 @@ export class TimerService {
 
   constructor() { }
 
-  changeTimerCount(count: number) {
+  changeTimerCount = (count: number) => {
     this.timerCountSource.next(count);
   }
 
-  changeCountDown(count: number) {
+  changeCountDown = (count: number) => {
     this.countDownSource.next(count);
   }
 
-  changePauseLogs(values: string[]) {
+  changePauseLogs = (values: string[]) => {
     this.pauseLogsSource.next(values);
   }
 
-  changeTimeLogs(values: TimeLog[]) {
+  changeTimeLogs = (values: TimeLog[]) => {
     this.timeLogsSource.next(values);
   }
 
-  changeIsPaused(status: boolean) {
+  changeIsPaused = (status: boolean) => {
     this.isPausedSource.next(status);
   }
 
-  changeIsReset(status: boolean) {
+  changeIsReset = (status: boolean) => {
     this.isResetSource.next(status);
   }
 }

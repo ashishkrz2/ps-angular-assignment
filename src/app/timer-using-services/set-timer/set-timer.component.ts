@@ -32,10 +32,10 @@ export class SetTimerComponent implements OnInit {
 
       // logs for pause status
       if (this.isPaused) {
-        let log: string = `Pause at ${this.count}`;
+        const log = `Pause at ${this.count}`;
         this.pauseLogs.push(log);
       }
-      this.count && this.addTimeLogs(); // time log will not happen in case of invalid value
+      if (this.count) { this.addTimeLogs(); } // time log will not happen in case of invalid value
     });
     this.timerService.isReset.subscribe((status) => (this.isReset = status));
   }
@@ -44,16 +44,16 @@ export class SetTimerComponent implements OnInit {
   addTimeLogs = () => {
     this.timeLogs.push(new TimeLog(this.isPaused, new Date()));
     this.timerService.changeTimeLogs(this.timeLogs);
-  };
+  }
 
   setCount = (value) => {
 
-    // allow valid timer values only 
+    // allow valid timer values only
     if (value && !/^[1-9][0-9]*$/.test(value)) {
       return;
     }
 
-    // clear existing timer 
+    // clear existing timer
     if (value && this.count) {
       this.clearCount();
     }
@@ -65,7 +65,7 @@ export class SetTimerComponent implements OnInit {
     } else if (!this.isReset) {
       this.timerService.changeIsPaused(!this.isPaused);
     }
-  };
+  }
 
   // reset values
   clearCount = () => {
@@ -73,5 +73,5 @@ export class SetTimerComponent implements OnInit {
     this.timerService.changeTimerCount(0);
     this.timerService.changePauseLogs([]);
     this.timerService.changeTimeLogs([]);
-  };
+  }
 }

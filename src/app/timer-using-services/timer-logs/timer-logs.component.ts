@@ -13,7 +13,6 @@ export class TimerLogsComponent implements OnInit {
 
   ngOnInit(): void {
     this.timerService.timeLogs.subscribe((logs) => {
-      console.log("Changed recvd", logs);
       this.timeLogs = logs?.map((val) => {
         let str: string;
 

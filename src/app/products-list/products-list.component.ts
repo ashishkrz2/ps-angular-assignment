@@ -10,7 +10,6 @@ import { Product } from './models/product/product';
 export class ProductsListComponent {
   products: Product[];
   isListView: boolean;
-  
   // filter keys
   field: string;
   filter: string;

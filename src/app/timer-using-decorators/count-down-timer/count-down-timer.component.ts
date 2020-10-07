@@ -9,11 +9,11 @@ import {
   styleUrls: ['./count-down-timer.component.scss'],
 })
 export class CountDownTimerComponent {
-  _count: number;
+  counter: number;
   countInterval;
 
   constructor() {
-    this._count = 0;
+    this.counter = 0;
   }
 
   // emit the intermediate count status on start and pause
@@ -22,15 +22,15 @@ export class CountDownTimerComponent {
   @Input()
   set count(value: number) {
     if (+value) {
-      this.countInterval && this.pauseTimer(); // clear existing timer
+      if (this.countInterval) { this.pauseTimer(); } // clear existing timer
       this.startTimer();
     }
-    this._count = value;
+    this.counter = value;
   }
 
   @Input()
   set isPaused(status: boolean) {
-    this.setCountStatus.emit(this._count);
+    this.setCountStatus.emit(this.counter);
 
     // start or pause the timer based on received input
     if (status) {
@@ -41,18 +41,18 @@ export class CountDownTimerComponent {
   }
 
   // start timer with interval of 1 second
-  startTimer() {
+  startTimer = () => {
     this.countInterval = setInterval(() => {
-      if (!this._count) {
+      if (!this.counter) {
         clearInterval(this.countInterval);
       } else {
-        this._count--;
+        this.counter--;
       }
     }, 1000);
   }
 
   // clear the started interval on pause
-  pauseTimer() {
+  pauseTimer = () => {
     clearInterval(this.countInterval);
   }
 }

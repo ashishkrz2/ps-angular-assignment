@@ -15,8 +15,8 @@ export class SetTimerComponent {
   isReset: boolean;
 
   @Input()
-  set countDownValue ({ count }) {
-    count && this.addPauseLogs(count);
+  set countDownValue({ count }) {
+    if (count) { this.addPauseLogs(count); }
   }
 
   @Output() updateCountStatus = new EventEmitter<{
@@ -48,20 +48,18 @@ export class SetTimerComponent {
     }
     this.pauseLogs.push(log);
     this.addTimeLogs();
-  };
+  }
 
   setCount = (value) => {
 
-    // allow valid timer values only 
+    // allow valid timer values only
     if (value && !/^[1-9][0-9]*$/.test(value)) {
       return;
     }
-    
-    // clear existing timer 
+    // clear existing timer
     if (value && this.count) {
       this.clearCount();
     }
-
     if (value) {
       this.isReset = false;
       this.count = value;
@@ -73,7 +71,7 @@ export class SetTimerComponent {
       count: this.count,
       isPaused: this.isPaused,
     });
-  };
+  }
 
   // reset values
   clearCount = () => {
@@ -83,5 +81,5 @@ export class SetTimerComponent {
     this.timeLogs.length = 0;
     this.setTimeLogs.emit(this.timeLogs);
     this.resetCount.emit();
-  };
+  }
 }

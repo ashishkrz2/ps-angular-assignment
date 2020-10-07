@@ -1,5 +1,5 @@
-<div *ngIf="_timeLogs?.length;else empty_content" class="time-logs-list">
-  <p class="log" *ngFor="let log of _timeLogs">{{log}}</p>
+<div *ngIf="logs?.length;else empty_content" class="time-logs-list">
+  <p class="log" *ngFor="let log of logs">{{log}}</p>
 </div>
 
 <ng-template #empty_content>

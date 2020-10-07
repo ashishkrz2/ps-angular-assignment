@@ -35,7 +35,6 @@ export class StudentsTableComponent implements OnInit {
   sortData = (val) => {
     const sortField = val.target.innerHTML;
     if (sortField === this.field) {
-      
       // maintain sorting order sequence
       switch (this.order) {
         case 'default': this.order = 'asc'; break;

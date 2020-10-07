@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortPipe implements PipeTransform {
   transform(value: any[], ...args: string[]): unknown {
-    if (!value) return null;
-    if (!args) return value;
+    if (!value) { return null; }
+    if (!args) { return value; }
 
     const data: any[] = [...value]; // avoid changing original value
     const field = args[0]; // field for sorting
@@ -14,11 +14,11 @@ export class SortPipe implements PipeTransform {
 
     switch (order) {
       case 'asc': {
-        data.sort((a,b)=> (a[field] > b[field] ? 1 : -1))
+        data.sort((a, b) => (a[field] > b[field] ? 1 : -1));
         break;
       }
       case 'desc': {
-        data.sort((a,b)=> (a[field] < b[field] ? 1 : -1))
+        data.sort((a, b) => (a[field] < b[field] ? 1 : -1));
         break;
       }
       default:

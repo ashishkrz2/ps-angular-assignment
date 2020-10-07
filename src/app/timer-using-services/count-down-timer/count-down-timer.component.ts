@@ -17,7 +17,7 @@ export class CountDownTimerComponent implements OnInit {
   ngOnInit(): void {
     this.timerService.timerCount.subscribe((count) => {
       if (+count) {
-        this.countInterval && this.pauseTimer(); // clear existing timer
+        if (this.countInterval) { this.pauseTimer(); } // clear existing timer
         this.startTimer();
       }
       this.count = count;
@@ -38,7 +38,7 @@ export class CountDownTimerComponent implements OnInit {
   }
 
   // start timer with interval of 1 second
-  startTimer() {
+  startTimer = () => {
     this.countInterval = setInterval(() => {
       if (!this.count) {
         clearInterval(this.countInterval);
@@ -49,7 +49,7 @@ export class CountDownTimerComponent implements OnInit {
   }
 
   // clear the started interval on pause
-  pauseTimer() {
+  pauseTimer = () => {
     clearInterval(this.countInterval);
   }
 }

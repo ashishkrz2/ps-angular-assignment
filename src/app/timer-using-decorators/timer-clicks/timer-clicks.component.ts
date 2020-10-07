@@ -13,7 +13,7 @@ export class TimerClicksComponent {
   pausedCount;
 
   @Input()
-  set timeLogs (value: TimeLog[]) {
+  set timeLogs(value: TimeLog[]) {
     this.startedCount = 0;
     this.pausedCount = 0;
 
