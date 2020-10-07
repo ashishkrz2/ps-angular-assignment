@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TimerService } from '../services/timer/timer.service';
 
 @Component({
@@ -6,13 +6,14 @@ import { TimerService } from '../services/timer/timer.service';
   templateUrl: './timer-logs.component.html',
   styleUrls: ['./timer-logs.component.scss'],
 })
-export class TimerLogsComponent implements OnInit {
+export class TimerLogsComponent implements OnInit, OnDestroy {
   timeLogs: string[];
+  private timeLogsSub: any;
 
   constructor(private timerService: TimerService) {}
 
   ngOnInit(): void {
-    this.timerService.timeLogs.subscribe((logs) => {
+    this.timeLogsSub = this.timerService.timeLogs.subscribe((logs) => {
       this.timeLogs = logs?.map((val) => {
         let str: string;
 
@@ -25,5 +26,9 @@ export class TimerLogsComponent implements OnInit {
         return str;
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.timeLogsSub.unsubscribe();
   }
 }

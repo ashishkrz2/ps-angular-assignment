@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { TimeLog } from '../models/time-log/time-log';
 import { TimerService } from '../services/timer/timer.service';
@@ -8,12 +8,17 @@ import { TimerService } from '../services/timer/timer.service';
   templateUrl: './set-timer.component.html',
   styleUrls: ['./set-timer.component.scss'],
 })
-export class SetTimerComponent implements OnInit {
+export class SetTimerComponent implements OnInit, OnDestroy {
   pauseLogs: string[];
   timeLogs: TimeLog[];
   count: number;
   isPaused: boolean;
   isReset: boolean;
+  private pauseLogsSub: any;
+  private timeLogsSub: any;
+  private countDownSub: any;
+  private isPausedSub: any;
+  private isResetSub: any;
 
   constructor(private timerService: TimerService) {
     this.pauseLogs = [];
@@ -24,10 +29,10 @@ export class SetTimerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.timerService.pauseLogs.subscribe((logs: string[]) => (this.pauseLogs = logs));
-    this.timerService.timeLogs.subscribe((logs: TimeLog[]) => (this.timeLogs = logs));
-    this.timerService.countDown.subscribe((count: number) => (this.count = count));
-    this.timerService.isPaused.subscribe((status: boolean) => {
+    this.pauseLogsSub = this.timerService.pauseLogs.subscribe((logs: string[]) => (this.pauseLogs = logs));
+    this.timeLogsSub = this.timerService.timeLogs.subscribe((logs: TimeLog[]) => (this.timeLogs = logs));
+    this.countDownSub = this.timerService.countDown.subscribe((count: number) => (this.count = count));
+    this.isPausedSub = this.timerService.isPaused.subscribe((status: boolean) => {
       this.isPaused = status;
 
       // logs for pause status
@@ -37,7 +42,7 @@ export class SetTimerComponent implements OnInit {
       }
       if (this.count) { this.addTimeLogs(); } // time log will not happen in case of invalid value
     });
-    this.timerService.isReset.subscribe((status) => (this.isReset = status));
+    this.isResetSub = this.timerService.isReset.subscribe((status) => (this.isReset = status));
   }
 
   // logs for start and pause with timestamp
@@ -73,5 +78,13 @@ export class SetTimerComponent implements OnInit {
     this.timerService.changeTimerCount(0);
     this.timerService.changePauseLogs([]);
     this.timerService.changeTimeLogs([]);
+  }
+
+  ngOnDestroy(): void {
+    this.pauseLogsSub.unsubscribe();
+    this.timeLogsSub.unsubscribe();
+    this.countDownSub.unsubscribe();
+    this.isPausedSub.unsubscribe();
+    this.isResetSub.unsubscribe();
   }
 }

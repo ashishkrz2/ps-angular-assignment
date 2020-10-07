@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TimerService } from '../services/timer/timer.service';
 
 @Component({
@@ -6,16 +6,18 @@ import { TimerService } from '../services/timer/timer.service';
   templateUrl: './count-down-timer.component.html',
   styleUrls: ['./count-down-timer.component.scss'],
 })
-export class CountDownTimerComponent implements OnInit {
+export class CountDownTimerComponent implements OnInit, OnDestroy {
   count: number;
   countInterval;
+  private timerCountSub: any;
+  private isPausedSub: any;
 
   constructor(private timerService: TimerService) {
     this.count = 0;
   }
 
   ngOnInit(): void {
-    this.timerService.timerCount.subscribe((count) => {
+    this.timerCountSub = this.timerService.timerCount.subscribe((count) => {
       if (+count) {
         if (this.countInterval) { this.pauseTimer(); } // clear existing timer
         this.startTimer();
@@ -23,7 +25,7 @@ export class CountDownTimerComponent implements OnInit {
       this.count = count;
     });
 
-    this.timerService.isPaused.subscribe((status) => {
+    this.isPausedSub = this.timerService.isPaused.subscribe((status) => {
 
       // emit the intermediate count status on start and pause
       this.timerService.changeCountDown(this.count);
@@ -50,6 +52,12 @@ export class CountDownTimerComponent implements OnInit {
 
   // clear the started interval on pause
   pauseTimer = () => {
+    clearInterval(this.countInterval);
+  }
+
+  ngOnDestroy(): void {
+    this.timerCountSub.unsubscribe();
+    this.isPausedSub.unsubscribe();
     clearInterval(this.countInterval);
   }
 }

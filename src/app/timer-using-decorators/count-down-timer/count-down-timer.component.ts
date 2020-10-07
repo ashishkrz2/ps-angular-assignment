@@ -1,6 +1,6 @@
 import {
   Component,
-  Input, Output, EventEmitter
+  Input, Output, EventEmitter, OnDestroy
 } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import {
   templateUrl: './count-down-timer.component.html',
   styleUrls: ['./count-down-timer.component.scss'],
 })
-export class CountDownTimerComponent {
+export class CountDownTimerComponent implements OnDestroy {
   counter: number;
   countInterval;
 
@@ -53,6 +53,10 @@ export class CountDownTimerComponent {
 
   // clear the started interval on pause
   pauseTimer = () => {
+    clearInterval(this.countInterval);
+  }
+
+  ngOnDestroy(): void {
     clearInterval(this.countInterval);
   }
 }
